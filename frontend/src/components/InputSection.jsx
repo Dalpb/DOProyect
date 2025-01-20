@@ -11,8 +11,18 @@ import {
   InputLabel,
   Select,
   MenuItem } from "@mui/material"
+import { useAppContext } from "@/context/AppContext";
 
 const InputSection = () =>{
+    const appContext = useAppContext();
+
+    const {generateStructure} = appContext; 
+
+    const generateImage = async() =>{
+      console.log("Iniciamos");
+      await generateStructure();
+    }
+
     return(
         <Card 
         elevation={10}
@@ -47,9 +57,9 @@ const InputSection = () =>{
               <Select
               labelId="generation-select"
               label="Proceso">
-                <MenuItem value={10}>Opción 1</MenuItem>
-                <MenuItem value={20}>Opción 2</MenuItem>
-                <MenuItem value={30}>Opción 3</MenuItem>
+                <MenuItem value="model1">Opción 1</MenuItem>
+                <MenuItem value="model2">Opción 2</MenuItem>
+                <MenuItem value="model3">Opción 3</MenuItem>
               </Select>
             </FormControl>
             <Button
@@ -61,6 +71,7 @@ const InputSection = () =>{
                   backgroundColor: '#1565c0'
                 }
               }}
+              onClick={generateImage}
             >
               GENERAR
             </Button>
